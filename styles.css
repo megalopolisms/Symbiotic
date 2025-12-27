@@ -1139,7 +1139,7 @@ body {
 
 .atomic-modeling {
     background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-elevated) 50%, var(--color-bg) 100%);
-    padding: 40px 0;
+    padding: 32px 0;
     position: relative;
     overflow: hidden;
 }
@@ -1297,7 +1297,7 @@ body {
    ============================================ */
 
 .section {
-    padding: 40px 0;
+    padding: 32px 0;
     position: relative;
 }
 
@@ -1318,7 +1318,7 @@ body {
 
 .section-header {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 .section-label {
@@ -3081,11 +3081,11 @@ body {
     }
 
     .section {
-        padding: 32px 0;
+        padding: 28px 0;
     }
 
     .section::before {
-        height: 32px;
+        height: 24px;
     }
 
     .container {
@@ -3181,7 +3181,7 @@ body {
 
     /* Section spacing */
     .section {
-        padding: 28px 0;
+        padding: 24px 0;
     }
 
     .container {
@@ -3190,8 +3190,8 @@ body {
 
     /* Footer */
     .footer {
-        padding: 28px 16px;
-        padding-bottom: calc(28px + var(--safe-area-inset-bottom));
+        padding: 24px 16px;
+        padding-bottom: calc(24px + var(--safe-area-inset-bottom));
     }
 
     .footer-logo {
@@ -3762,8 +3762,8 @@ body {
 
 /* Origin Story Section */
 .vortex-origin {
-    margin-bottom: 32px;
-    padding: 28px;
+    margin-bottom: 24px;
+    padding: 24px;
     background: var(--color-bg-elevated);
     border: 1px solid var(--color-border);
     border-radius: 24px;
@@ -3914,7 +3914,7 @@ body {
 
 /* Pattern Studies */
 .pattern-studies {
-    margin-bottom: 32px;
+    margin-bottom: 24px;
 }
 
 .pattern-studies h3 {
@@ -4026,7 +4026,7 @@ body {
 
 /* Flow Research Grid */
 .flow-research-grid {
-    margin-bottom: 32px;
+    margin-bottom: 24px;
 }
 
 .research-category {
@@ -4077,8 +4077,8 @@ body {
 
 /* Facilities Grid */
 .vortex-facilities {
-    margin-bottom: 32px;
-    padding: 24px;
+    margin-bottom: 24px;
+    padding: 20px;
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
     border-radius: 20px;
