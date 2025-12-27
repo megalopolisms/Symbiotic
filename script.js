@@ -141,11 +141,92 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Element Cycling for Atom Animation
-    const elementKeys = ['iron', 'copper', 'gold', 'titanium', 'platinum', 'cobalt'];
-    let currentElementIndex = 0;
+    // Realistic Electron Configurations
+    const electronConfigs = {
+        iron: {
+            symbol: 'Fe',
+            number: 26,
+            name: 'Iron',
+            shells: [2, 8, 14, 2], // K, L, M, N shells
+            color: '#f97316'
+        },
+        copper: {
+            symbol: 'Cu',
+            number: 29,
+            name: 'Copper',
+            shells: [2, 8, 18, 1],
+            color: '#fbbf24'
+        },
+        gold: {
+            symbol: 'Au',
+            number: 79,
+            name: 'Gold',
+            shells: [2, 8, 18, 32, 18, 1], // 6 shells
+            color: '#fcd34d'
+        },
+        titanium: {
+            symbol: 'Ti',
+            number: 22,
+            name: 'Titanium',
+            shells: [2, 8, 10, 2],
+            color: '#a78bfa'
+        },
+        platinum: {
+            symbol: 'Pt',
+            number: 78,
+            name: 'Platinum',
+            shells: [2, 8, 18, 32, 17, 1], // 6 shells
+            color: '#e2e8f0'
+        },
+        cobalt: {
+            symbol: 'Co',
+            number: 27,
+            name: 'Cobalt',
+            shells: [2, 8, 15, 2],
+            color: '#60a5fa'
+        }
+    };
+
     const atomContainer = document.querySelector('.atom-container');
-    const elementTags = document.querySelectorAll('.element-tag');
+    const electronShellsContainer = document.querySelector('.electron-shells');
+    const nucleusLabel = document.querySelector('.nucleus-label');
+    const cubeFaces = document.querySelectorAll('.cube-face');
+
+    function createElectronShells(elementKey) {
+        if (!electronShellsContainer) return;
+
+        const config = electronConfigs[elementKey];
+        electronShellsContainer.innerHTML = '';
+
+        config.shells.forEach((electronCount, shellIndex) => {
+            const shell = document.createElement('div');
+            shell.className = `electron-shell shell-${shellIndex + 1}`;
+            shell.style.borderColor = `${config.color}40`;
+
+            // Add electrons to this shell (max 8 visible for performance)
+            const visibleElectrons = Math.min(electronCount, 8);
+            for (let i = 0; i < visibleElectrons; i++) {
+                const electron = document.createElement('div');
+                electron.className = 'shell-electron';
+                electron.style.background = config.color;
+                electron.style.boxShadow = `0 0 10px ${config.color}, 0 0 20px ${config.color}60`;
+
+                // Position electrons around the orbit
+                const angle = (i / visibleElectrons) * 360;
+                electron.style.transform = `rotate(${angle}deg) translateX(${(shellIndex + 1) * 25 + 15}px)`;
+
+                shell.appendChild(electron);
+            }
+
+            electronShellsContainer.appendChild(shell);
+        });
+
+        // Update nucleus label
+        if (nucleusLabel) {
+            nucleusLabel.textContent = `${config.shells.length} shells · ${config.number} electrons`;
+            nucleusLabel.style.color = config.color;
+        }
+    }
 
     function setActiveElement(elementKey) {
         if (!atomContainer) return;
@@ -153,33 +234,44 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update atom colors
         atomContainer.setAttribute('data-element', elementKey);
 
-        // Update active tag
-        elementTags.forEach(tag => {
-            if (tag.getAttribute('data-element') === elementKey) {
-                tag.classList.add('active');
+        // Create electron shells
+        createElectronShells(elementKey);
+
+        // Update active cube face
+        cubeFaces.forEach(face => {
+            if (face.getAttribute('data-element') === elementKey) {
+                face.classList.add('active');
             } else {
-                tag.classList.remove('active');
+                face.classList.remove('active');
             }
         });
     }
 
-    function cycleElement() {
-        currentElementIndex = (currentElementIndex + 1) % elementKeys.length;
-        setActiveElement(elementKeys[currentElementIndex]);
+    // Cube rotation syncs with element changes
+    const cubeRotationOrder = ['iron', 'copper', 'gold', 'platinum', 'titanium', 'cobalt'];
+    let currentElementIndex = 0;
+
+    function cycleWithCube() {
+        currentElementIndex = (currentElementIndex + 1) % cubeRotationOrder.length;
+        // Reset to iron after full rotation
+        if (currentElementIndex === 0) {
+            currentElementIndex = 0;
+        }
+        setActiveElement(cubeRotationOrder[currentElementIndex]);
     }
 
-    // Click on element tag to change atom
-    elementTags.forEach(tag => {
-        tag.addEventListener('click', () => {
-            const elementKey = tag.getAttribute('data-element');
-            currentElementIndex = elementKeys.indexOf(elementKey);
+    // Click on cube face to change element
+    cubeFaces.forEach(face => {
+        face.addEventListener('click', () => {
+            const elementKey = face.getAttribute('data-element');
+            currentElementIndex = cubeRotationOrder.indexOf(elementKey);
             setActiveElement(elementKey);
         });
     });
 
-    // Cycle every 3 seconds
+    // Initialize and cycle every 4 seconds (synced with cube rotation)
     if (atomContainer) {
-        setActiveElement('iron'); // Set initial
-        setInterval(cycleElement, 3000);
+        setActiveElement('iron');
+        setInterval(cycleWithCube, 4000);
     }
 });

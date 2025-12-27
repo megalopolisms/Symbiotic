@@ -698,97 +698,166 @@ body {
     to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* Orbiting Element Tags */
-.element-orbit {
+/* 3D Element Cube */
+.element-cube-container {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 500px;
-    height: 500px;
-    transform: translate(-50%, -50%);
-    animation: element-orbit-spin 30s linear infinite;
-    pointer-events: none;
-    z-index: 15;
+    top: 20px;
+    left: 20px;
+    width: 100px;
+    height: 100px;
+    perspective: 400px;
+    z-index: 20;
 }
 
-@keyframes element-orbit-spin {
-    from { transform: translate(-50%, -50%) rotate(0deg); }
-    to { transform: translate(-50%, -50%) rotate(360deg); }
+.element-cube {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: cube-rotate 20s ease-in-out infinite;
 }
 
-.element-tag {
+@keyframes cube-rotate {
+    0%, 16% { transform: rotateX(0deg) rotateY(0deg); }
+    20%, 36% { transform: rotateX(0deg) rotateY(-90deg); }
+    40%, 56% { transform: rotateX(0deg) rotateY(-180deg); }
+    60%, 76% { transform: rotateX(0deg) rotateY(-270deg); }
+    80%, 96% { transform: rotateX(-90deg) rotateY(0deg); }
+    100% { transform: rotateX(0deg) rotateY(0deg); }
+}
+
+.cube-face {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 60px;
-    height: 70px;
-    margin: -35px 0 0 -30px;
+    width: 100px;
+    height: 100px;
     background: rgba(10, 10, 18, 0.95);
     border: 1px solid var(--color-border-bright);
-    border-radius: 8px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 2px;
+    gap: 4px;
     backdrop-filter: blur(10px);
-    transform: rotate(calc(var(--i) * 60deg)) translateY(-220px) rotate(calc(var(--i) * -60deg));
-    animation: tag-counter-rotate 30s linear infinite;
-    animation-delay: calc(var(--i) * -5s);
+    cursor: pointer;
     transition: all 0.3s ease;
-    pointer-events: auto;
+    backface-visibility: visible;
 }
 
-@keyframes tag-counter-rotate {
-    from { transform: rotate(calc(var(--i) * 60deg)) translateY(-220px) rotate(calc(var(--i) * -60deg + 0deg)); }
-    to { transform: rotate(calc(var(--i) * 60deg)) translateY(-220px) rotate(calc(var(--i) * -60deg + -360deg)); }
-}
-
-.element-tag:hover {
-    transform: rotate(calc(var(--i) * 60deg)) translateY(-220px) rotate(calc(var(--i) * -60deg)) scale(1.15);
+.cube-face:hover {
     border-color: var(--color-primary);
-    box-shadow: 0 0 20px var(--color-primary-glow);
-    z-index: 20;
+    box-shadow: 0 0 30px var(--color-primary-glow);
 }
 
-.tag-symbol {
+.cube-face.active {
+    background: rgba(59, 130, 246, 0.2);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 40px var(--color-primary-glow);
+}
+
+.cube-front  { transform: translateZ(50px); }
+.cube-back   { transform: rotateY(180deg) translateZ(50px); }
+.cube-right  { transform: rotateY(90deg) translateZ(50px); }
+.cube-left   { transform: rotateY(-90deg) translateZ(50px); }
+.cube-top    { transform: rotateX(90deg) translateZ(50px); }
+.cube-bottom { transform: rotateX(-90deg) translateZ(50px); }
+
+.cube-symbol {
     font-family: var(--font-mono);
-    font-size: 24px;
+    font-size: 32px;
     font-weight: 700;
     transition: color 0.3s ease;
 }
 
-.tag-number {
+.cube-number {
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 12px;
     color: var(--color-text-muted);
 }
 
-/* Element Tag Colors */
-.element-tag[data-element="iron"] .tag-symbol { color: #f97316; }
-.element-tag[data-element="iron"] { border-color: rgba(249, 115, 22, 0.3); }
+.cube-name {
+    font-size: 10px;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
 
-.element-tag[data-element="copper"] .tag-symbol { color: #fbbf24; }
-.element-tag[data-element="copper"] { border-color: rgba(251, 191, 36, 0.3); }
+/* Cube Face Colors */
+.cube-face[data-element="iron"] .cube-symbol { color: #f97316; }
+.cube-face[data-element="iron"] { border-color: rgba(249, 115, 22, 0.4); }
 
-.element-tag[data-element="gold"] .tag-symbol { color: #fcd34d; }
-.element-tag[data-element="gold"] { border-color: rgba(252, 211, 77, 0.3); }
+.cube-face[data-element="copper"] .cube-symbol { color: #fbbf24; }
+.cube-face[data-element="copper"] { border-color: rgba(251, 191, 36, 0.4); }
 
-.element-tag[data-element="titanium"] .tag-symbol { color: #a78bfa; }
-.element-tag[data-element="titanium"] { border-color: rgba(167, 139, 250, 0.3); }
+.cube-face[data-element="gold"] .cube-symbol { color: #fcd34d; }
+.cube-face[data-element="gold"] { border-color: rgba(252, 211, 77, 0.4); }
 
-.element-tag[data-element="platinum"] .tag-symbol { color: #e2e8f0; }
-.element-tag[data-element="platinum"] { border-color: rgba(226, 232, 240, 0.3); }
+.cube-face[data-element="titanium"] .cube-symbol { color: #a78bfa; }
+.cube-face[data-element="titanium"] { border-color: rgba(167, 139, 250, 0.4); }
 
-.element-tag[data-element="cobalt"] .tag-symbol { color: #60a5fa; }
-.element-tag[data-element="cobalt"] { border-color: rgba(96, 165, 250, 0.3); }
+.cube-face[data-element="platinum"] .cube-symbol { color: #e2e8f0; }
+.cube-face[data-element="platinum"] { border-color: rgba(226, 232, 240, 0.4); }
 
-/* Active element highlight */
-.element-tag.active {
-    background: rgba(59, 130, 246, 0.15);
-    border-color: var(--color-primary);
-    box-shadow: 0 0 25px var(--color-primary-glow);
-    transform: rotate(calc(var(--i) * 60deg)) translateY(-220px) rotate(calc(var(--i) * -60deg)) scale(1.1);
+.cube-face[data-element="cobalt"] .cube-symbol { color: #60a5fa; }
+.cube-face[data-element="cobalt"] { border-color: rgba(96, 165, 250, 0.4); }
+
+/* Dynamic Electron Shells */
+.electron-shells {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    transform-style: preserve-3d;
+}
+
+.electron-shell {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 50%;
+    transform-style: preserve-3d;
+}
+
+.electron-shell .shell-electron {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--color-primary-bright);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--color-primary), 0 0 20px var(--color-primary-glow);
+    top: 50%;
+    left: 0;
+    margin: -4px 0 0 -4px;
+}
+
+/* Shell sizes and animations */
+.electron-shell.shell-1 { width: 80px; height: 80px; margin: -40px 0 0 -40px; animation: shell-spin-1 3s linear infinite; }
+.electron-shell.shell-2 { width: 130px; height: 130px; margin: -65px 0 0 -65px; animation: shell-spin-2 5s linear infinite reverse; }
+.electron-shell.shell-3 { width: 180px; height: 180px; margin: -90px 0 0 -90px; animation: shell-spin-3 7s linear infinite; }
+.electron-shell.shell-4 { width: 230px; height: 230px; margin: -115px 0 0 -115px; animation: shell-spin-4 9s linear infinite reverse; }
+.electron-shell.shell-5 { width: 280px; height: 280px; margin: -140px 0 0 -140px; animation: shell-spin-5 11s linear infinite; }
+.electron-shell.shell-6 { width: 330px; height: 330px; margin: -165px 0 0 -165px; animation: shell-spin-6 13s linear infinite reverse; }
+
+@keyframes shell-spin-1 { from { transform: rotateX(70deg) rotateZ(0deg); } to { transform: rotateX(70deg) rotateZ(360deg); } }
+@keyframes shell-spin-2 { from { transform: rotateX(60deg) rotateY(30deg) rotateZ(0deg); } to { transform: rotateX(60deg) rotateY(30deg) rotateZ(360deg); } }
+@keyframes shell-spin-3 { from { transform: rotateX(75deg) rotateY(60deg) rotateZ(0deg); } to { transform: rotateX(75deg) rotateY(60deg) rotateZ(360deg); } }
+@keyframes shell-spin-4 { from { transform: rotateX(65deg) rotateY(90deg) rotateZ(0deg); } to { transform: rotateX(65deg) rotateY(90deg) rotateZ(360deg); } }
+@keyframes shell-spin-5 { from { transform: rotateX(70deg) rotateY(120deg) rotateZ(0deg); } to { transform: rotateX(70deg) rotateY(120deg) rotateZ(360deg); } }
+@keyframes shell-spin-6 { from { transform: rotateX(60deg) rotateY(150deg) rotateZ(0deg); } to { transform: rotateX(60deg) rotateY(150deg) rotateZ(360deg); } }
+
+/* Nucleus label */
+.nucleus-label {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--color-text-muted);
+    white-space: nowrap;
 }
 
 /* Element Color Themes */
