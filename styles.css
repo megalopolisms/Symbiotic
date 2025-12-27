@@ -930,6 +930,165 @@ body {
 .atom-container[data-element="cobalt"] .flux-particle { background: #60a5fa; box-shadow: 0 0 10px #60a5fa, 0 0 20px rgba(96, 165, 250, 0.6); }
 
 /* ============================================
+   ATOMIC MODELING SECTION
+   ============================================ */
+
+.atomic-modeling {
+    background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-elevated) 50%, var(--color-bg) 100%);
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.atomic-modeling::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+}
+
+.atomic-modeling::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.atomic-content {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.atomic-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.atomic-header .section-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-electric);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.atomic-header .section-title {
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+.atomic-text {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.atomic-lead {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--color-text);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.atomic-text p {
+    font-size: 16px;
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+    margin-bottom: 16px;
+}
+
+.atomic-text p:last-child {
+    font-size: 18px;
+    font-weight: 600;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0;
+}
+
+.atomic-capabilities {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 60px;
+}
+
+.capability-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 28px;
+    transition: all var(--transition);
+}
+
+.capability-item:hover {
+    border-color: var(--color-electric);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(168, 85, 247, 0.15);
+}
+
+.capability-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: rgba(168, 85, 247, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.capability-icon svg {
+    width: 24px;
+    height: 24px;
+    color: var(--color-electric);
+}
+
+.capability-text h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 8px;
+}
+
+.capability-text p {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+}
+
+.atomic-cta {
+    text-align: center;
+    padding: 40px;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.08), rgba(59, 130, 246, 0.08));
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    border-radius: 20px;
+}
+
+.atomic-disclosure {
+    font-size: 15px;
+    color: var(--color-text-secondary);
+    margin-bottom: 24px;
+    line-height: 1.7;
+}
+
+/* ============================================
    SECTIONS - Enhanced
    ============================================ */
 
@@ -2215,6 +2374,26 @@ body {
     }
 
     .geoem-proprietary {
+        padding: 28px;
+    }
+
+    .atomic-header .section-title {
+        font-size: 28px;
+    }
+
+    .atomic-lead {
+        font-size: 17px;
+    }
+
+    .atomic-capabilities {
+        grid-template-columns: 1fr;
+    }
+
+    .capability-item {
+        padding: 20px;
+    }
+
+    .atomic-cta {
         padding: 28px;
     }
 
