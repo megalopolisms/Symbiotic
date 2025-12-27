@@ -102,7 +102,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 100px;
+    height: 160px;
 }
 
 .logo {
@@ -112,15 +112,15 @@ body {
 }
 
 .logo-image {
-    height: 70px;
-    max-width: 420px;
+    height: 120px;
+    max-width: 600px;
     width: auto;
-    filter: invert(1) brightness(1.8) drop-shadow(0 0 15px var(--color-primary-glow));
+    filter: invert(1) brightness(1.8) drop-shadow(0 0 20px var(--color-primary-glow));
     transition: all var(--transition);
 }
 
 .logo:hover .logo-image {
-    filter: invert(1) brightness(2) drop-shadow(0 0 30px var(--color-primary-glow));
+    filter: invert(1) brightness(2) drop-shadow(0 0 40px var(--color-primary-glow));
 }
 
 .nav-links {
@@ -182,7 +182,7 @@ body {
     align-items: center;
     position: relative;
     overflow: hidden;
-    padding-top: 100px;
+    padding-top: 160px;
     background: var(--color-bg);
 }
 
@@ -637,6 +637,160 @@ body {
     font-size: 13px;
     color: var(--color-text-muted);
     line-height: 1.6;
+}
+
+/* ============================================
+   COLLABORATION - First Principles
+   ============================================ */
+
+.collaboration {
+    background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-elevated) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.collaboration::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.collab-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.collab-header {
+    margin-bottom: 48px;
+}
+
+.collab-header .section-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.collab-header .section-title {
+    font-size: 42px;
+    font-weight: 700;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.collab-statement {
+    margin-bottom: 48px;
+}
+
+.collab-lead {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--color-text);
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.collab-statement p {
+    font-size: 17px;
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+}
+
+.collab-highlight {
+    color: var(--color-primary-bright);
+    font-weight: 600;
+}
+
+.collab-mission {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: left;
+    margin-bottom: 48px;
+    position: relative;
+    overflow: hidden;
+}
+
+.collab-mission::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gradient-primary);
+}
+
+.mission-icon {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mission-icon svg {
+    width: 28px;
+    height: 28px;
+    color: var(--color-primary-bright);
+}
+
+.mission-text h4 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 12px;
+}
+
+.mission-text p {
+    font-size: 16px;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+}
+
+.collab-partners {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.partner-tag {
+    background: rgba(59, 130, 246, 0.08);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    color: var(--color-primary-bright);
+    padding: 10px 24px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: all var(--transition);
+}
+
+.partner-tag:hover {
+    background: rgba(59, 130, 246, 0.15);
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
 }
 
 /* ============================================
@@ -1480,10 +1634,10 @@ body {
 }
 
 .footer-logo {
-    height: 100px;
+    height: 180px;
     width: auto;
-    max-width: 500px;
-    filter: invert(1) brightness(2) drop-shadow(0 0 20px var(--color-primary-glow));
+    max-width: 700px;
+    filter: invert(1) brightness(2) drop-shadow(0 0 25px var(--color-primary-glow));
 }
 
 .footer-tagline {
@@ -1540,6 +1694,14 @@ body {
 
     .geoem-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .collab-header .section-title {
+        font-size: 36px;
+    }
+
+    .collab-lead {
+        font-size: 20px;
     }
 }
 
@@ -1626,6 +1788,45 @@ body {
     .status-badge {
         font-size: 10px;
         padding: 6px 14px;
+    }
+
+    .collab-header .section-title {
+        font-size: 28px;
+    }
+
+    .collab-lead {
+        font-size: 18px;
+    }
+
+    .collab-mission {
+        flex-direction: column;
+        padding: 28px;
+        text-align: center;
+    }
+
+    .collab-mission::before {
+        width: 100%;
+        height: 3px;
+        left: 0;
+        top: 0;
+    }
+
+    .mission-icon {
+        margin: 0 auto;
+    }
+
+    .mission-text h4,
+    .mission-text p {
+        text-align: center;
+    }
+
+    .collab-partners {
+        gap: 10px;
+    }
+
+    .partner-tag {
+        font-size: 11px;
+        padding: 8px 16px;
     }
 
     .academic-info .section-label,
