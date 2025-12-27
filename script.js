@@ -131,13 +131,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Parallax effect on hero visual
+    // Parallax effect on hero visual (subtle movement on mouse)
     const heroVisual = document.querySelector('.hero-visual');
     if (heroVisual && window.innerWidth > 768) {
         window.addEventListener('mousemove', (e) => {
-            const x = (e.clientX / window.innerWidth - 0.5) * 20;
-            const y = (e.clientY / window.innerHeight - 0.5) * 20;
-            heroVisual.style.transform = `translateY(-50%) translate(${x}px, ${y}px)`;
+            const x = (e.clientX / window.innerWidth - 0.5) * 10;
+            const y = (e.clientY / window.innerHeight - 0.5) * 10;
+            // Removed translateY(-50%) which was pushing atom up into header
+            heroVisual.style.transform = `translate(${x}px, ${y}px)`;
         });
     }
 
