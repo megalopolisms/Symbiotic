@@ -427,14 +427,30 @@ body {
 /* 3D ATOM ANIMATION */
 .hero-visual {
     position: sticky;
-    top: 220px;
+    top: 180px;
     width: 100%;
-    height: 450px;
     perspective: 1000px;
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
     margin-left: -30px;
+}
+
+.visual-highlight {
+    max-width: 400px;
+    padding: 20px 24px;
+    background: rgba(6, 182, 212, 0.08);
+    border-left: 3px solid var(--color-accent);
+    border-radius: 0 12px 12px 0;
+    font-size: 15px;
+    color: var(--color-text);
+    line-height: 1.7;
+}
+
+.visual-highlight em {
+    color: var(--color-accent-bright);
+    font-style: italic;
 }
 
 .atom-container {
@@ -2520,6 +2536,10 @@ body {
     }
 
     .element-cube-container {
+        display: none;
+    }
+
+    .visual-highlight {
         display: none;
     }
 
