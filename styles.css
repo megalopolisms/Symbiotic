@@ -246,8 +246,12 @@ body {
 }
 
 .hero-narrative sup {
-    font-size: 10px;
+    font-size: 0.7em;
     color: var(--color-primary-bright);
+    vertical-align: super;
+    line-height: 0;
+    position: relative;
+    top: -0.3em;
 }
 
 .hero-contrast {
