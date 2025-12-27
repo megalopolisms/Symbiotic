@@ -93,6 +93,7 @@ body {
     background: var(--color-bg-glass);
     backdrop-filter: blur(24px);
     border-bottom: 1px solid var(--color-border);
+    overflow: visible;
 }
 
 .nav-container {
@@ -102,7 +103,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 280px;
+    height: 140px;
 }
 
 .logo {
@@ -182,7 +183,7 @@ body {
     align-items: center;
     position: relative;
     overflow: hidden;
-    padding-top: 280px;
+    padding-top: 140px;
     background: var(--color-bg);
 }
 
