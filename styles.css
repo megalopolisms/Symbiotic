@@ -429,12 +429,19 @@ body {
     position: sticky;
     top: 180px;
     width: 100%;
-    perspective: 1000px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
     margin-left: -30px;
+}
+
+.atom-wrapper {
+    position: relative;
+    width: 450px;
+    height: 450px;
+    perspective: 1000px;
+    flex-shrink: 0;
 }
 
 .visual-highlight {
@@ -446,6 +453,7 @@ body {
     font-size: 15px;
     color: var(--color-text);
     line-height: 1.7;
+    flex-shrink: 0;
 }
 
 .visual-highlight em {
@@ -454,9 +462,11 @@ body {
 }
 
 .atom-container {
-    position: relative;
-    width: 450px;
-    height: 450px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     transform-style: preserve-3d;
     animation: atom-rotate 30s linear infinite;
 }
@@ -2451,7 +2461,7 @@ body {
         height: 400px;
     }
 
-    .atom-container {
+    .atom-wrapper {
         width: 350px;
         height: 350px;
     }
@@ -2523,7 +2533,7 @@ body {
         justify-self: center;
     }
 
-    .atom-container {
+    .atom-wrapper {
         width: 280px;
         height: 280px;
     }
@@ -2559,11 +2569,9 @@ body {
         display: none;
     }
 
-    .element-cube-container {
-        display: none;
-    }
-
-    .visual-highlight {
+    .element-cube-container,
+    .visual-highlight,
+    .model-label {
         display: none;
     }
 
