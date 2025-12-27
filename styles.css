@@ -577,6 +577,23 @@ body {
     color: var(--color-primary);
 }
 
+.contact-address {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 16px;
+    color: var(--color-text-muted);
+    font-size: 15px;
+}
+
+.contact-address svg {
+    width: 20px;
+    height: 20px;
+    color: var(--color-primary);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
 .nda-notice {
     display: flex;
     align-items: center;

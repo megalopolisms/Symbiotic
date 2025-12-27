@@ -1,7 +1,7 @@
 /* TEAM */
 Founder: Yuri Petrini
 Contact: yuri@symbioticdynamics.com
-Location: USA
+Location: 929 Division Street, Biloxi, MS 39530
 
 /* SITE */
 Last update: 2025-12-27
