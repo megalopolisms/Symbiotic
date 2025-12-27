@@ -698,6 +698,126 @@ body {
     to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
+/* Element Legend */
+.element-legend {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(10, 10, 18, 0.9);
+    border: 1px solid var(--color-border-bright);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+    transition: all 0.5s ease;
+}
+
+.element-symbol {
+    font-family: var(--font-mono);
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--color-primary-bright);
+    min-width: 60px;
+    text-align: center;
+    transition: color 0.5s ease;
+}
+
+.element-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.element-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text);
+    transition: color 0.5s ease;
+}
+
+.element-number {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-text-muted);
+}
+
+.element-number::before {
+    content: 'Atomic # ';
+    color: var(--color-text-subtle);
+}
+
+/* Element Color Themes */
+/* Iron (Fe) - Default */
+.atom-container[data-element="iron"] .nucleus {
+    background: linear-gradient(135deg, #b45309 0%, #dc2626 100%);
+    box-shadow: 0 0 30px rgba(220, 38, 38, 0.4), 0 0 60px rgba(220, 38, 38, 0.3), 0 0 100px rgba(180, 83, 9, 0.2);
+}
+.atom-container[data-element="iron"] .electron { background: #f97316; box-shadow: 0 0 15px #f97316, 0 0 30px rgba(249, 115, 22, 0.4); }
+.atom-container[data-element="iron"] ~ .element-legend .element-symbol { color: #f97316; }
+.atom-container[data-element="iron"] .em-pulse { border-color: #f97316; box-shadow: 0 0 20px rgba(249, 115, 22, 0.4); }
+
+/* Copper (Cu) */
+.atom-container[data-element="copper"] .nucleus {
+    background: linear-gradient(135deg, #b45309 0%, #d97706 100%);
+    box-shadow: 0 0 30px rgba(217, 119, 6, 0.4), 0 0 60px rgba(180, 83, 9, 0.3), 0 0 100px rgba(217, 119, 6, 0.2);
+}
+.atom-container[data-element="copper"] .electron { background: #fbbf24; box-shadow: 0 0 15px #fbbf24, 0 0 30px rgba(251, 191, 36, 0.4); }
+.atom-container[data-element="copper"] ~ .element-legend .element-symbol { color: #fbbf24; }
+.atom-container[data-element="copper"] .orbit { border-color: rgba(251, 191, 36, 0.3); }
+.atom-container[data-element="copper"] .em-pulse { border-color: #fbbf24; box-shadow: 0 0 20px rgba(251, 191, 36, 0.4); }
+.atom-container[data-element="copper"] .field-line { border-color: rgba(251, 191, 36, 0.15); }
+
+/* Gold (Au) */
+.atom-container[data-element="gold"] .nucleus {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    box-shadow: 0 0 30px rgba(251, 191, 36, 0.5), 0 0 60px rgba(245, 158, 11, 0.4), 0 0 100px rgba(251, 191, 36, 0.3);
+}
+.atom-container[data-element="gold"] .electron { background: #fcd34d; box-shadow: 0 0 15px #fcd34d, 0 0 30px rgba(252, 211, 77, 0.5); }
+.atom-container[data-element="gold"] ~ .element-legend .element-symbol { color: #fcd34d; }
+.atom-container[data-element="gold"] .orbit { border-color: rgba(252, 211, 77, 0.3); }
+.atom-container[data-element="gold"] .em-pulse { border-color: #fcd34d; box-shadow: 0 0 20px rgba(252, 211, 77, 0.5); }
+.atom-container[data-element="gold"] .field-line { border-color: rgba(252, 211, 77, 0.2); }
+.atom-container[data-element="gold"] .flux-particle { background: #fcd34d; box-shadow: 0 0 8px #fcd34d, 0 0 15px rgba(252, 211, 77, 0.5); }
+
+/* Titanium (Ti) */
+.atom-container[data-element="titanium"] .nucleus {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.4), 0 0 60px rgba(139, 92, 246, 0.3), 0 0 100px rgba(99, 102, 241, 0.2);
+}
+.atom-container[data-element="titanium"] .electron { background: #a78bfa; box-shadow: 0 0 15px #a78bfa, 0 0 30px rgba(167, 139, 250, 0.4); }
+.atom-container[data-element="titanium"] ~ .element-legend .element-symbol { color: #a78bfa; }
+.atom-container[data-element="titanium"] .orbit { border-color: rgba(167, 139, 250, 0.3); }
+.atom-container[data-element="titanium"] .em-pulse { border-color: #a78bfa; box-shadow: 0 0 20px rgba(167, 139, 250, 0.4); }
+.atom-container[data-element="titanium"] .field-line { border-color: rgba(167, 139, 250, 0.15); }
+.atom-container[data-element="titanium"] .flux-particle { background: #a78bfa; box-shadow: 0 0 8px #a78bfa, 0 0 15px rgba(167, 139, 250, 0.5); }
+
+/* Platinum (Pt) */
+.atom-container[data-element="platinum"] .nucleus {
+    background: linear-gradient(135deg, #94a3b8 0%, #e2e8f0 100%);
+    box-shadow: 0 0 30px rgba(226, 232, 240, 0.4), 0 0 60px rgba(148, 163, 184, 0.3), 0 0 100px rgba(226, 232, 240, 0.2);
+}
+.atom-container[data-element="platinum"] .electron { background: #e2e8f0; box-shadow: 0 0 15px #e2e8f0, 0 0 30px rgba(226, 232, 240, 0.5); }
+.atom-container[data-element="platinum"] ~ .element-legend .element-symbol { color: #e2e8f0; }
+.atom-container[data-element="platinum"] .orbit { border-color: rgba(226, 232, 240, 0.3); }
+.atom-container[data-element="platinum"] .em-pulse { border-color: #e2e8f0; box-shadow: 0 0 20px rgba(226, 232, 240, 0.4); }
+.atom-container[data-element="platinum"] .field-line { border-color: rgba(226, 232, 240, 0.15); }
+.atom-container[data-element="platinum"] .flux-particle { background: #e2e8f0; box-shadow: 0 0 8px #e2e8f0, 0 0 15px rgba(226, 232, 240, 0.5); }
+
+/* Cobalt (Co) - Magnetic */
+.atom-container[data-element="cobalt"] .nucleus {
+    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+    box-shadow: 0 0 30px rgba(37, 99, 235, 0.5), 0 0 60px rgba(59, 130, 246, 0.4), 0 0 100px rgba(37, 99, 235, 0.3);
+}
+.atom-container[data-element="cobalt"] .electron { background: #60a5fa; box-shadow: 0 0 15px #60a5fa, 0 0 30px rgba(96, 165, 250, 0.5); }
+.atom-container[data-element="cobalt"] ~ .element-legend .element-symbol { color: #60a5fa; }
+.atom-container[data-element="cobalt"] .orbit { border-color: rgba(96, 165, 250, 0.35); }
+.atom-container[data-element="cobalt"] .em-pulse { border-color: #60a5fa; box-shadow: 0 0 25px rgba(96, 165, 250, 0.5); }
+.atom-container[data-element="cobalt"] .field-line { border-color: rgba(96, 165, 250, 0.25); }
+.atom-container[data-element="cobalt"] .flux-particle { background: #60a5fa; box-shadow: 0 0 10px #60a5fa, 0 0 20px rgba(96, 165, 250, 0.6); }
+
 /* ============================================
    SECTIONS - Enhanced
    ============================================ */

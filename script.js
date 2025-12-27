@@ -140,4 +140,49 @@ document.addEventListener('DOMContentLoaded', () => {
             heroVisual.style.transform = `translateY(-50%) translate(${x}px, ${y}px)`;
         });
     }
+
+    // Element Cycling for Atom Animation
+    const elements = [
+        { symbol: 'Fe', name: 'Iron', number: 26, key: 'iron' },
+        { symbol: 'Cu', name: 'Copper', number: 29, key: 'copper' },
+        { symbol: 'Au', name: 'Gold', number: 79, key: 'gold' },
+        { symbol: 'Ti', name: 'Titanium', number: 22, key: 'titanium' },
+        { symbol: 'Pt', name: 'Platinum', number: 78, key: 'platinum' },
+        { symbol: 'Co', name: 'Cobalt', number: 27, key: 'cobalt' }
+    ];
+
+    let currentElementIndex = 0;
+    const atomContainer = document.querySelector('.atom-container');
+    const elementSymbol = document.querySelector('.element-symbol');
+    const elementName = document.querySelector('.element-name');
+    const elementNumber = document.querySelector('.element-number');
+    const elementLegend = document.querySelector('.element-legend');
+
+    function cycleElement() {
+        if (!atomContainer || !elementSymbol) return;
+
+        // Fade out
+        elementLegend.style.opacity = '0';
+        elementLegend.style.transform = 'translateX(-10px)';
+
+        setTimeout(() => {
+            // Update to next element
+            currentElementIndex = (currentElementIndex + 1) % elements.length;
+            const element = elements[currentElementIndex];
+
+            atomContainer.setAttribute('data-element', element.key);
+            elementSymbol.textContent = element.symbol;
+            elementName.textContent = element.name;
+            elementNumber.textContent = element.number;
+
+            // Fade in
+            elementLegend.style.opacity = '1';
+            elementLegend.style.transform = 'translateX(0)';
+        }, 300);
+    }
+
+    // Cycle every 5 seconds
+    if (atomContainer) {
+        setInterval(cycleElement, 5000);
+    }
 });
