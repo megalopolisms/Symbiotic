@@ -491,6 +491,15 @@ body {
     line-height: 1.6;
 }
 
+.domain-card.dual-use {
+    border-color: rgba(6, 182, 212, 0.3);
+    background: linear-gradient(135deg, var(--color-bg) 0%, rgba(6, 182, 212, 0.05) 100%);
+}
+
+.domain-card.dual-use:hover {
+    border-color: var(--color-accent);
+}
+
 /* ============================================
    APPLICATIONS
    ============================================ */
