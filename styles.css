@@ -493,6 +493,211 @@ body {
     100% { width: 400px; height: 400px; margin: -200px 0 0 -200px; opacity: 0; }
 }
 
+/* Magnetic Field Lines */
+.magnetic-field {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.field-line {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    transform-style: preserve-3d;
+}
+
+.field-line-1 {
+    width: 300px;
+    height: 120px;
+    margin: -60px 0 0 -150px;
+    border-color: rgba(168, 85, 247, 0.2);
+    transform: rotateX(80deg) rotateZ(0deg);
+    animation: field-rotate 20s linear infinite;
+}
+
+.field-line-2 {
+    width: 340px;
+    height: 140px;
+    margin: -70px 0 0 -170px;
+    border-color: rgba(59, 130, 246, 0.15);
+    transform: rotateX(80deg) rotateZ(45deg);
+    animation: field-rotate 25s linear infinite reverse;
+}
+
+.field-line-3 {
+    width: 380px;
+    height: 160px;
+    margin: -80px 0 0 -190px;
+    border-color: rgba(6, 182, 212, 0.12);
+    transform: rotateX(80deg) rotateZ(90deg);
+    animation: field-rotate 30s linear infinite;
+}
+
+.field-line-4 {
+    width: 420px;
+    height: 180px;
+    margin: -90px 0 0 -210px;
+    border-color: rgba(168, 85, 247, 0.1);
+    transform: rotateX(80deg) rotateZ(135deg);
+    animation: field-rotate 35s linear infinite reverse;
+}
+
+@keyframes field-rotate {
+    from { transform: rotateX(80deg) rotateZ(0deg); }
+    to { transform: rotateX(80deg) rotateZ(360deg); }
+}
+
+/* Magnetic Flux Particles */
+.flux-particles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.flux-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--color-electric);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--color-electric), 0 0 15px var(--color-electric-glow);
+    opacity: 0;
+    animation: flux-flow 6s ease-in-out infinite;
+}
+
+.flux-particle:nth-child(1) { animation-delay: 0s; }
+.flux-particle:nth-child(2) { animation-delay: 0.75s; }
+.flux-particle:nth-child(3) { animation-delay: 1.5s; }
+.flux-particle:nth-child(4) { animation-delay: 2.25s; }
+.flux-particle:nth-child(5) { animation-delay: 3s; }
+.flux-particle:nth-child(6) { animation-delay: 3.75s; }
+.flux-particle:nth-child(7) { animation-delay: 4.5s; }
+.flux-particle:nth-child(8) { animation-delay: 5.25s; }
+
+@keyframes flux-flow {
+    0% {
+        top: 50%;
+        left: 50%;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    10% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        top: 10%;
+        left: 50%;
+        opacity: 0.8;
+        transform: translate(-50%, 0) scale(1.2);
+    }
+    90% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        top: 50%;
+        left: 50%;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+}
+
+/* Electromagnetic Pulse */
+.em-pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    margin: -30px 0 0 -30px;
+    border: 2px solid var(--color-electric);
+    border-radius: 50%;
+    opacity: 0;
+    animation: em-burst 4s ease-out infinite;
+    box-shadow: 0 0 20px var(--color-electric-glow), inset 0 0 20px var(--color-electric-glow);
+}
+
+.em-pulse-2 {
+    animation-delay: 2s;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 20px var(--color-primary-glow), inset 0 0 20px var(--color-primary-glow);
+}
+
+@keyframes em-burst {
+    0% {
+        width: 60px;
+        height: 60px;
+        margin: -30px 0 0 -30px;
+        opacity: 0.9;
+        border-width: 3px;
+    }
+    50% {
+        opacity: 0.5;
+        border-width: 2px;
+    }
+    100% {
+        width: 500px;
+        height: 500px;
+        margin: -250px 0 0 -250px;
+        opacity: 0;
+        border-width: 1px;
+    }
+}
+
+/* Magnetic Core */
+.magnetic-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    transform: translate(-50%, -50%);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    border-radius: 50%;
+    animation: core-spin 5s linear infinite;
+}
+
+.magnetic-core::before,
+.magnetic-core::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    border-radius: 50%;
+}
+
+.magnetic-core::before {
+    width: 80px;
+    height: 80px;
+    margin: -40px 0 0 -40px;
+    animation: core-spin 7s linear infinite reverse;
+}
+
+.magnetic-core::after {
+    width: 100px;
+    height: 100px;
+    margin: -50px 0 0 -50px;
+    animation: core-spin 9s linear infinite;
+}
+
+@keyframes core-spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
 /* ============================================
    SECTIONS - Enhanced
    ============================================ */
