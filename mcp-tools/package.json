@@ -1,0 +1,14 @@
+{
+  "name": "symbiotic-mcp",
+  "version": "1.0.0",
+  "description": "MCP Server for Symbiotic website testing and diagnostics",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "playwright": "^1.49.0"
+  }
+}
