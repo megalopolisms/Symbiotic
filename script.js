@@ -328,4 +328,38 @@ document.addEventListener('DOMContentLoaded', () => {
         setActiveElement('iron', 0);
         setInterval(cycleWithCube, 4000);
     }
+
+    // Performance Optimization: Pause animations when not visible
+    const animatedSections = document.querySelectorAll('.hero, #vortex');
+
+    const animationObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const animatedElements = entry.target.querySelectorAll(
+                '.atom-wrapper, .orbit, .electron, .electron-shell, ' +
+                '.vortex, .vortex-ring, .vortex-core, .particle, .flow-line, .obstacle-glow'
+            );
+
+            if (entry.isIntersecting) {
+                // Resume animations when visible
+                animatedElements.forEach(el => {
+                    el.style.animationPlayState = 'running';
+                });
+                entry.target.classList.remove('animations-paused');
+            } else {
+                // Pause animations when not visible
+                animatedElements.forEach(el => {
+                    el.style.animationPlayState = 'paused';
+                });
+                entry.target.classList.add('animations-paused');
+            }
+        });
+    }, {
+        root: null,
+        rootMargin: '100px', // Start animations slightly before visible
+        threshold: 0
+    });
+
+    animatedSections.forEach(section => {
+        if (section) animationObserver.observe(section);
+    });
 });
