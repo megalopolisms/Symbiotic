@@ -3750,7 +3750,7 @@ body {
     font-size: 18px;
     color: var(--color-text-secondary);
     line-height: 1.7;
-    margin-bottom: 16px;
+    margin-bottom: 10px;
 }
 
 .vortex-statement {
@@ -4030,7 +4030,7 @@ body {
 }
 
 .research-category {
-    margin-bottom: 48px;
+    margin-bottom: 28px;
 }
 
 .research-category h3 {
