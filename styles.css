@@ -108,25 +108,18 @@ body {
 .logo {
     display: flex;
     align-items: center;
-    gap: 12px;
     text-decoration: none;
-    color: var(--color-text);
 }
 
-.logo-symbol {
-    font-size: 28px;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 0 8px var(--color-primary-glow));
+.logo-image {
+    height: 44px;
+    width: auto;
+    filter: drop-shadow(0 0 10px var(--color-primary-glow));
+    transition: all var(--transition);
 }
 
-.logo-text {
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 0.15em;
-    color: var(--color-text);
+.logo:hover .logo-image {
+    filter: drop-shadow(0 0 16px var(--color-primary-glow));
 }
 
 .nav-links {
@@ -1279,17 +1272,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
 }
 
-.footer-brand .logo-symbol {
-    font-size: 24px;
-}
-
-.footer-brand .logo-text {
-    font-size: 11px;
-    letter-spacing: 0.2em;
+.footer-logo {
+    height: 60px;
+    width: auto;
+    filter: drop-shadow(0 0 12px var(--color-primary-glow));
 }
 
 .footer-tagline {
