@@ -1139,7 +1139,7 @@ body {
 
 .atomic-modeling {
     background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-elevated) 50%, var(--color-bg) 100%);
-    padding: 120px 0;
+    padding: 72px 0;
     position: relative;
     overflow: hidden;
 }
@@ -1175,7 +1175,7 @@ body {
 
 .atomic-header {
     text-align: center;
-    margin-bottom: 48px;
+    margin-bottom: 32px;
 }
 
 .atomic-header .section-label {
@@ -1195,7 +1195,7 @@ body {
 
 .atomic-text {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 }
 
 .atomic-lead {
@@ -1227,7 +1227,7 @@ body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 }
 
 .capability-item {
@@ -1297,7 +1297,7 @@ body {
    ============================================ */
 
 .section {
-    padding: 140px 0;
+    padding: 80px 0;
     position: relative;
 }
 
@@ -1318,7 +1318,7 @@ body {
 
 .section-header {
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 48px;
 }
 
 .section-label {
@@ -1494,7 +1494,7 @@ body {
 }
 
 .collab-header {
-    margin-bottom: 48px;
+    margin-bottom: 32px;
 }
 
 .collab-header .section-label {
@@ -1516,7 +1516,7 @@ body {
 }
 
 .collab-statement {
-    margin-bottom: 48px;
+    margin-bottom: 32px;
 }
 
 .collab-lead {
@@ -2259,7 +2259,7 @@ body {
 
 .geoem-intro {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 }
 
 .geoem-intro .lead {
@@ -3081,11 +3081,11 @@ body {
     }
 
     .section {
-        padding: 80px 0;
+        padding: 60px 0;
     }
 
     .section::before {
-        height: 60px;
+        height: 48px;
     }
 
     .container {
@@ -3181,7 +3181,7 @@ body {
 
     /* Section spacing */
     .section {
-        padding: 60px 0;
+        padding: 48px 0;
     }
 
     .container {
@@ -3190,8 +3190,8 @@ body {
 
     /* Footer */
     .footer {
-        padding: 48px 16px;
-        padding-bottom: calc(48px + var(--safe-area-inset-bottom));
+        padding: 40px 16px;
+        padding-bottom: calc(40px + var(--safe-area-inset-bottom));
     }
 
     .footer-logo {
@@ -3283,9 +3283,9 @@ body {
 .vortex-hero {
     display: flex;
     flex-direction: column;
-    gap: 48px;
+    gap: 32px;
     align-items: center;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 }
 
 /* Kármán Vortex Animation Container - FULL WIDTH AT TOP */
@@ -3762,8 +3762,8 @@ body {
 
 /* Origin Story Section */
 .vortex-origin {
-    margin-bottom: 80px;
-    padding: 48px;
+    margin-bottom: 48px;
+    padding: 36px;
     background: var(--color-bg-elevated);
     border: 1px solid var(--color-border);
     border-radius: 24px;
@@ -3914,7 +3914,7 @@ body {
 
 /* Pattern Studies */
 .pattern-studies {
-    margin-bottom: 80px;
+    margin-bottom: 48px;
 }
 
 .pattern-studies h3 {
@@ -4026,7 +4026,7 @@ body {
 
 /* Flow Research Grid */
 .flow-research-grid {
-    margin-bottom: 80px;
+    margin-bottom: 48px;
 }
 
 .research-category {
@@ -4077,8 +4077,8 @@ body {
 
 /* Facilities Grid */
 .vortex-facilities {
-    margin-bottom: 80px;
-    padding: 40px;
+    margin-bottom: 48px;
+    padding: 32px;
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
     border-radius: 20px;
