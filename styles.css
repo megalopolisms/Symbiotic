@@ -325,8 +325,31 @@ body {
     font-size: clamp(2.5rem, 5vw, 3.5rem);
     font-weight: 700;
     line-height: 1.1;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     letter-spacing: -0.03em;
+}
+
+.hero-discovery {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-accent-bright);
+    margin-bottom: 32px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    position: relative;
+    padding-left: 24px;
+}
+
+.hero-discovery::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 2px;
+    background: var(--color-accent);
+    box-shadow: 0 0 10px var(--color-accent-glow);
 }
 
 .gradient-text {
