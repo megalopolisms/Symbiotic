@@ -1,0 +1,5 @@
+# Security Policy for Symbiotic Fluid & Astrodynamics
+Contact: mailto:yuri@symbioticdynamics.com
+Expires: 2026-12-31T23:59:00.000Z
+Preferred-Languages: en
+Canonical: https://symbioticastrodynamics.com/.well-known/security.txt
