@@ -1256,6 +1256,209 @@ body {
 }
 
 /* ============================================
+   GEOELECTROMAGNETICS SECTION
+   ============================================ */
+
+.geoem {
+    background: var(--color-bg);
+    position: relative;
+}
+
+.geoem::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-electric), transparent);
+}
+
+.geoem-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.geoem-intro {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.geoem-intro .lead {
+    font-size: 1.15rem;
+    color: var(--color-text-secondary);
+    max-width: 800px;
+    margin: 0 auto 24px;
+}
+
+.research-status {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.status-badge {
+    background: rgba(168, 85, 247, 0.1);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    color: var(--color-electric);
+    padding: 8px 20px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.geoem-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 48px;
+}
+
+.geoem-card {
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 32px;
+    transition: all var(--transition);
+}
+
+.geoem-card:hover {
+    border-color: var(--color-electric);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(168, 85, 247, 0.15);
+}
+
+.geoem-card.featured {
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.08), rgba(6, 182, 212, 0.05));
+    border-color: rgba(168, 85, 247, 0.3);
+}
+
+.geoem-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(168, 85, 247, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.geoem-icon svg {
+    width: 24px;
+    height: 24px;
+    color: var(--color-electric);
+}
+
+.geoem-card h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--color-text);
+}
+
+.geoem-card p {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+.data-tag {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 6px 14px;
+    background: rgba(168, 85, 247, 0.15);
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--color-electric);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.geoem-proprietary {
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.05), rgba(59, 130, 246, 0.05));
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    border-radius: 20px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.geoem-proprietary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-electric), var(--color-primary), var(--color-accent));
+}
+
+.proprietary-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.proprietary-header svg {
+    width: 28px;
+    height: 28px;
+    color: var(--color-electric);
+}
+
+.proprietary-header h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.geoem-proprietary > p {
+    font-size: 15px;
+    color: var(--color-text-secondary);
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+
+.findings-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px 0;
+}
+
+.findings-list li {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: var(--color-text);
+}
+
+.findings-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    background: var(--color-electric);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--color-electric-glow);
+}
+
+.disclosure {
+    font-size: 13px;
+    color: var(--color-accent-bright);
+    font-style: italic;
+    padding-top: 16px;
+    border-top: 1px solid var(--color-border);
+}
+
+/* ============================================
    FOOTER
    ============================================ */
 
@@ -1334,6 +1537,10 @@ body {
         grid-template-columns: 1fr;
         gap: 40px;
     }
+
+    .geoem-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 768px) {
@@ -1402,6 +1609,23 @@ body {
     .academic-content {
         grid-template-columns: 1fr;
         gap: 32px;
+    }
+
+    .geoem-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .geoem-proprietary {
+        padding: 28px;
+    }
+
+    .research-status {
+        gap: 10px;
+    }
+
+    .status-badge {
+        font-size: 10px;
+        padding: 6px 14px;
     }
 
     .academic-info .section-label,
