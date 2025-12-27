@@ -457,6 +457,13 @@ body {
     gap: 40px;
     padding-top: 60px;
     align-self: start;
+    /* SAFEGUARDS: Lock positioning to prevent escape into nav */
+    transform-origin: center center;
+    contain: layout style;
+    isolation: isolate;
+    will-change: transform;
+    /* Clamp any transforms to prevent negative positioning */
+    transform: translate(0, 0); /* Base transform - JS can modify but not translateY(-50%) */
 }
 
 .atom-wrapper {

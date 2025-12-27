@@ -132,12 +132,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Parallax effect on hero visual (subtle movement on mouse)
+    // SAFEGUARDS: Clamp Y to prevent upward movement into nav
     const heroVisual = document.querySelector('.hero-visual');
     if (heroVisual && window.innerWidth > 768) {
         window.addEventListener('mousemove', (e) => {
             const x = (e.clientX / window.innerWidth - 0.5) * 10;
-            const y = (e.clientY / window.innerHeight - 0.5) * 10;
-            // Removed translateY(-50%) which was pushing atom up into header
+            // Clamp Y: only allow 0 to +10px (down), never negative (up)
+            const rawY = (e.clientY / window.innerHeight - 0.5) * 10;
+            const y = Math.max(0, rawY); // HARD CLAMP: never negative
             heroVisual.style.transform = `translate(${x}px, ${y}px)`;
         });
     }
