@@ -3285,8 +3285,9 @@ body {
 .vortex-animation-wrapper {
     position: relative;
     width: 100%;
-    aspect-ratio: 4/3;
-    max-width: 600px;
+    aspect-ratio: 16/10;
+    max-width: 700px;
+    min-height: 380px;
     margin: 0 auto;
 }
 
@@ -3294,11 +3295,14 @@ body {
     position: relative;
     width: 100%;
     height: 100%;
-    background: radial-gradient(ellipse at 30% 50%, rgba(6, 182, 212, 0.08), transparent 60%),
-                radial-gradient(ellipse at 70% 50%, rgba(59, 130, 246, 0.06), transparent 60%);
+    background: radial-gradient(ellipse at 30% 50%, rgba(6, 182, 212, 0.12), transparent 60%),
+                radial-gradient(ellipse at 70% 50%, rgba(59, 130, 246, 0.08), transparent 60%);
     border: 1px solid var(--color-border);
     border-radius: 20px;
     overflow: hidden;
+    /* GPU acceleration */
+    transform: translateZ(0);
+    will-change: transform;
 }
 
 /* Flow Lines Background */
@@ -3322,47 +3326,49 @@ body {
     animation: flow-stream 4s linear infinite;
 }
 
-.flow-line:nth-child(1) { top: 15%; animation-delay: 0s; }
-.flow-line:nth-child(2) { top: 28%; animation-delay: 0.4s; }
-.flow-line:nth-child(3) { top: 41%; animation-delay: 0.8s; }
-.flow-line:nth-child(4) { top: 50%; animation-delay: 0.2s; opacity: 0.8; }
-.flow-line:nth-child(5) { top: 59%; animation-delay: 1s; }
-.flow-line:nth-child(6) { top: 72%; animation-delay: 0.6s; }
-.flow-line:nth-child(7) { top: 85%; animation-delay: 1.2s; }
+/* Reduced flow lines for performance */
+.flow-line:nth-child(1) { top: 20%; animation-delay: 0s; }
+.flow-line:nth-child(2) { top: 40%; animation-delay: 0.5s; }
+.flow-line:nth-child(3) { top: 50%; animation-delay: 0.2s; opacity: 0.9; }
+.flow-line:nth-child(4) { top: 60%; animation-delay: 0.8s; }
+.flow-line:nth-child(5) { top: 80%; animation-delay: 1s; }
+/* Hide extra flow lines */
+.flow-line:nth-child(6), .flow-line:nth-child(7) { display: none; }
 
 @keyframes flow-stream {
     from { transform: translateX(0); }
     to { transform: translateX(50%); }
 }
 
-/* Central Obstacle (Cylinder) */
+/* Central Obstacle (Cylinder) - PROMINENT */
 .vortex-obstacle {
     position: absolute;
-    left: 20%;
+    left: 18%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 50%, #8b5cf6 100%);
     border-radius: 50%;
     box-shadow:
-        0 0 20px var(--color-primary-glow),
-        0 0 40px var(--color-primary-glow),
-        inset 0 0 15px rgba(255, 255, 255, 0.3);
+        0 0 30px rgba(59, 130, 246, 0.8),
+        0 0 60px rgba(6, 182, 212, 0.6),
+        0 0 100px rgba(139, 92, 246, 0.4),
+        inset 0 0 20px rgba(255, 255, 255, 0.4);
     z-index: 10;
 }
 
 .obstacle-glow {
     position: absolute;
-    inset: -15px;
+    inset: -25px;
     border-radius: 50%;
-    background: radial-gradient(circle, var(--color-primary-glow), transparent 70%);
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.6), rgba(59, 130, 246, 0.3) 40%, transparent 70%);
     animation: obstacle-pulse 2s ease-in-out infinite;
 }
 
 @keyframes obstacle-pulse {
-    0%, 100% { opacity: 0.5; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.2); }
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.3); }
 }
 
 /* Kármán Vortex Street */
@@ -3374,136 +3380,154 @@ body {
     bottom: 0;
 }
 
-/* Individual Vortices */
+/* Individual Vortices - LARGE & VISIBLE */
 .vortex {
     position: absolute;
-    width: 60px;
-    height: 60px;
-    animation: vortex-drift 6s linear infinite;
+    width: 100px;
+    height: 100px;
+    animation: vortex-drift 8s linear infinite;
+    will-change: transform, opacity;
 }
 
-/* Upper row - offset right */
-.vortex-upper { top: 25%; }
-.vortex-upper.v1 { left: 5%; animation-delay: 0s; }
-.vortex-upper.v2 { left: 35%; animation-delay: 2s; }
-.vortex-upper.v3 { left: 65%; animation-delay: 4s; }
+/* Upper row - cyan vortices (clockwise) */
+.vortex-upper { top: 18%; }
+.vortex-upper.v1 { left: 0%; animation-delay: 0s; }
+.vortex-upper.v2 { left: 30%; animation-delay: 2.5s; }
+.vortex-upper.v3 { left: 60%; animation-delay: 5s; }
 
-/* Lower row - offset left from upper */
-.vortex-lower { top: 55%; }
-.vortex-lower.v1 { left: 20%; animation-delay: 1s; }
-.vortex-lower.v2 { left: 50%; animation-delay: 3s; }
-.vortex-lower.v3 { left: 80%; animation-delay: 5s; }
+/* Lower row - blue vortices (counter-clockwise) - staggered */
+.vortex-lower { top: 52%; }
+.vortex-lower.v1 { left: 15%; animation-delay: 1.25s; }
+.vortex-lower.v2 { left: 45%; animation-delay: 3.75s; }
+.vortex-lower.v3 { left: 75%; animation-delay: 6.25s; }
 
 @keyframes vortex-drift {
     0% {
         opacity: 0;
-        transform: translateX(-30px) scale(0.3);
+        transform: translateX(-40px) scale(0.2);
     }
-    10% {
+    8% {
         opacity: 1;
         transform: translateX(0) scale(1);
     }
-    90% {
-        opacity: 1;
-        transform: translateX(60px) scale(1.2);
+    85% {
+        opacity: 0.9;
+        transform: translateX(80px) scale(1.1);
     }
     100% {
         opacity: 0;
-        transform: translateX(90px) scale(1.4);
+        transform: translateX(120px) scale(1.3);
     }
 }
 
-/* Vortex Core */
+/* Vortex Core - BRIGHT CENTER */
 .vortex-core {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 12px;
-    height: 12px;
-    background: var(--color-accent-bright);
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
-    box-shadow: 0 0 15px var(--color-accent), 0 0 30px var(--color-accent-glow);
+    animation: core-pulse 1.5s ease-in-out infinite;
 }
 
-/* Upper vortices rotate clockwise */
+/* Upper vortices - CYAN with bright glow */
 .vortex-upper .vortex-core {
-    background: var(--color-accent-bright);
-    box-shadow: 0 0 15px var(--color-accent), 0 0 30px var(--color-accent-glow);
+    background: radial-gradient(circle, #22d3ee 0%, #06b6d4 50%, #0891b2 100%);
+    box-shadow:
+        0 0 20px rgba(34, 211, 238, 0.9),
+        0 0 40px rgba(6, 182, 212, 0.7),
+        0 0 60px rgba(6, 182, 212, 0.5);
 }
 
-/* Lower vortices rotate counter-clockwise - different color */
+/* Lower vortices - BLUE with bright glow */
 .vortex-lower .vortex-core {
-    background: var(--color-primary-bright);
-    box-shadow: 0 0 15px var(--color-primary), 0 0 30px var(--color-primary-glow);
+    background: radial-gradient(circle, #60a5fa 0%, #3b82f6 50%, #2563eb 100%);
+    box-shadow:
+        0 0 20px rgba(96, 165, 250, 0.9),
+        0 0 40px rgba(59, 130, 246, 0.7),
+        0 0 60px rgba(59, 130, 246, 0.5);
 }
 
-/* Vortex Rings */
+@keyframes core-pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.2); }
+}
+
+/* Vortex Rings - VISIBLE SPIRAL ARMS */
 .vortex-ring {
     position: absolute;
     top: 50%;
     left: 50%;
     border-radius: 50%;
-    border: 1px solid;
+    border: 2px solid;
     transform-origin: center;
+    will-change: transform;
 }
 
-/* Upper vortices - clockwise rotation */
+/* Upper vortices - clockwise rotation - CYAN */
 .vortex-upper .vortex-ring {
-    border-color: rgba(6, 182, 212, 0.4);
+    border-color: rgba(6, 182, 212, 0.6);
+    box-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
     animation: spin-clockwise 2s linear infinite;
 }
 
 .vortex-upper .vortex-ring.r1 {
-    width: 24px;
-    height: 24px;
-    margin: -12px 0 0 -12px;
-    animation-duration: 1.5s;
+    width: 36px;
+    height: 36px;
+    margin: -18px 0 0 -18px;
+    border-width: 3px;
+    border-color: rgba(34, 211, 238, 0.8);
+    animation-duration: 1.2s;
 }
 
 .vortex-upper .vortex-ring.r2 {
-    width: 40px;
-    height: 40px;
-    margin: -20px 0 0 -20px;
-    border-color: rgba(6, 182, 212, 0.25);
-    animation-duration: 2s;
+    width: 60px;
+    height: 60px;
+    margin: -30px 0 0 -30px;
+    border-color: rgba(6, 182, 212, 0.5);
+    animation-duration: 1.8s;
 }
 
 .vortex-upper .vortex-ring.r3 {
-    width: 56px;
-    height: 56px;
-    margin: -28px 0 0 -28px;
-    border-color: rgba(6, 182, 212, 0.15);
-    animation-duration: 2.5s;
+    width: 90px;
+    height: 90px;
+    margin: -45px 0 0 -45px;
+    border-color: rgba(6, 182, 212, 0.3);
+    animation-duration: 2.4s;
 }
 
-/* Lower vortices - counter-clockwise rotation */
+/* Lower vortices - counter-clockwise rotation - BLUE */
 .vortex-lower .vortex-ring {
-    border-color: rgba(59, 130, 246, 0.4);
+    border-color: rgba(59, 130, 246, 0.6);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
     animation: spin-counter 2s linear infinite;
 }
 
 .vortex-lower .vortex-ring.r1 {
-    width: 24px;
-    height: 24px;
-    margin: -12px 0 0 -12px;
-    animation-duration: 1.5s;
+    width: 36px;
+    height: 36px;
+    margin: -18px 0 0 -18px;
+    border-width: 3px;
+    border-color: rgba(96, 165, 250, 0.8);
+    animation-duration: 1.2s;
 }
 
 .vortex-lower .vortex-ring.r2 {
-    width: 40px;
-    height: 40px;
-    margin: -20px 0 0 -20px;
-    border-color: rgba(59, 130, 246, 0.25);
-    animation-duration: 2s;
+    width: 60px;
+    height: 60px;
+    margin: -30px 0 0 -30px;
+    border-color: rgba(59, 130, 246, 0.5);
+    animation-duration: 1.8s;
 }
 
 .vortex-lower .vortex-ring.r3 {
-    width: 56px;
-    height: 56px;
-    margin: -28px 0 0 -28px;
-    border-color: rgba(59, 130, 246, 0.15);
-    animation-duration: 2.5s;
+    width: 90px;
+    height: 90px;
+    margin: -45px 0 0 -45px;
+    border-color: rgba(59, 130, 246, 0.3);
+    animation-duration: 2.4s;
 }
 
 @keyframes spin-clockwise {
@@ -3516,7 +3540,7 @@ body {
     to { transform: rotate(-360deg); }
 }
 
-/* Flow Particles */
+/* Flow Particles - REDUCED for performance */
 .flow-particles {
     position: absolute;
     inset: 0;
@@ -3525,26 +3549,26 @@ body {
 
 .particle {
     position: absolute;
-    width: 4px;
-    height: 4px;
-    background: var(--color-accent-bright);
+    width: 5px;
+    height: 5px;
+    background: #22d3ee;
     border-radius: 50%;
-    box-shadow: 0 0 6px var(--color-accent);
-    animation: particle-flow 5s linear infinite;
+    box-shadow: 0 0 8px rgba(34, 211, 238, 0.8), 0 0 15px rgba(6, 182, 212, 0.5);
+    animation: particle-flow 6s linear infinite;
+    will-change: transform, left;
 }
 
-.particle.p1 { top: 20%; animation-delay: 0s; }
-.particle.p2 { top: 30%; animation-delay: 0.4s; }
-.particle.p3 { top: 40%; animation-delay: 0.8s; }
-.particle.p4 { top: 50%; animation-delay: 0.2s; }
-.particle.p5 { top: 60%; animation-delay: 1s; }
-.particle.p6 { top: 70%; animation-delay: 0.6s; }
-.particle.p7 { top: 25%; animation-delay: 1.4s; }
-.particle.p8 { top: 35%; animation-delay: 1.8s; }
-.particle.p9 { top: 45%; animation-delay: 2.2s; }
-.particle.p10 { top: 55%; animation-delay: 2.6s; }
-.particle.p11 { top: 65%; animation-delay: 3s; }
-.particle.p12 { top: 75%; animation-delay: 3.4s; }
+/* Only 6 particles for better performance */
+.particle.p1 { top: 22%; animation-delay: 0s; }
+.particle.p2 { top: 38%; animation-delay: 1s; }
+.particle.p3 { top: 50%; animation-delay: 2s; }
+.particle.p4 { top: 62%; animation-delay: 3s; }
+.particle.p5 { top: 78%; animation-delay: 4s; }
+.particle.p6 { top: 35%; animation-delay: 5s; }
+/* Hide extra particles */
+.particle.p7, .particle.p8, .particle.p9, .particle.p10, .particle.p11, .particle.p12 {
+    display: none;
+}
 
 @keyframes particle-flow {
     0% {
@@ -3554,23 +3578,20 @@ body {
     5% {
         opacity: 1;
     }
-    20% {
-        /* Approaching obstacle */
-        left: 18%;
+    18% {
+        left: 16%;
     }
-    25% {
-        /* Deflection point */
-        left: 22%;
+    22% {
+        left: 20%;
         transform: translateY(0);
     }
-    35% {
-        /* Curving around */
-        transform: translateY(var(--deflect, 15px));
+    32% {
+        transform: translateY(var(--deflect, 20px));
     }
     50% {
-        transform: translateY(calc(var(--deflect, 15px) * 0.5));
+        transform: translateY(calc(var(--deflect, 20px) * 0.3));
     }
-    95% {
+    90% {
         opacity: 1;
     }
     100% {
