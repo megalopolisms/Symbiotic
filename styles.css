@@ -112,14 +112,14 @@ body {
 }
 
 .logo-image {
-    height: 44px;
+    height: 40px;
     width: auto;
-    filter: drop-shadow(0 0 10px var(--color-primary-glow));
+    filter: invert(1) brightness(2) drop-shadow(0 0 10px var(--color-primary-glow));
     transition: all var(--transition);
 }
 
 .logo:hover .logo-image {
-    filter: drop-shadow(0 0 16px var(--color-primary-glow));
+    filter: invert(1) brightness(2) drop-shadow(0 0 20px var(--color-primary-glow));
 }
 
 .nav-links {
@@ -1276,9 +1276,9 @@ body {
 }
 
 .footer-logo {
-    height: 60px;
+    height: 50px;
     width: auto;
-    filter: drop-shadow(0 0 12px var(--color-primary-glow));
+    filter: invert(1) brightness(2) drop-shadow(0 0 12px var(--color-primary-glow));
 }
 
 .footer-tagline {
