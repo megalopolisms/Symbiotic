@@ -200,7 +200,7 @@ body {
     gap: 60px;
     position: relative;
     overflow: hidden;
-    padding: 160px 8% 80px;
+    padding: 160px 8% 40px;
     background: var(--color-bg);
 }
 
@@ -2487,7 +2487,7 @@ body {
     .hero {
         grid-template-columns: 1fr 400px;
         gap: 40px;
-        padding: 160px 5% 60px;
+        padding: 160px 5% 32px;
     }
 
     .hero-visual {
@@ -2575,7 +2575,7 @@ body {
     .hero {
         grid-template-columns: 1fr;
         grid-template-rows: auto auto;
-        padding: calc(120px + var(--safe-area-inset-top)) 20px 60px;
+        padding: calc(120px + var(--safe-area-inset-top)) 20px 32px;
         gap: 32px;
         min-height: auto;
     }
@@ -3110,7 +3110,7 @@ body {
 
     /* Hero adjustments */
     .hero {
-        padding: calc(100px + var(--safe-area-inset-top)) 16px 48px;
+        padding: calc(100px + var(--safe-area-inset-top)) 16px 24px;
         gap: 24px;
     }
 
