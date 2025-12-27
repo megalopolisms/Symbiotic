@@ -142,47 +142,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Element Cycling for Atom Animation
-    const elements = [
-        { symbol: 'Fe', name: 'Iron', number: 26, key: 'iron' },
-        { symbol: 'Cu', name: 'Copper', number: 29, key: 'copper' },
-        { symbol: 'Au', name: 'Gold', number: 79, key: 'gold' },
-        { symbol: 'Ti', name: 'Titanium', number: 22, key: 'titanium' },
-        { symbol: 'Pt', name: 'Platinum', number: 78, key: 'platinum' },
-        { symbol: 'Co', name: 'Cobalt', number: 27, key: 'cobalt' }
-    ];
-
+    const elementKeys = ['iron', 'copper', 'gold', 'titanium', 'platinum', 'cobalt'];
     let currentElementIndex = 0;
     const atomContainer = document.querySelector('.atom-container');
-    const elementSymbol = document.querySelector('.element-symbol');
-    const elementName = document.querySelector('.element-name');
-    const elementNumber = document.querySelector('.element-number');
-    const elementLegend = document.querySelector('.element-legend');
+    const elementTags = document.querySelectorAll('.element-tag');
 
-    function cycleElement() {
-        if (!atomContainer || !elementSymbol) return;
+    function setActiveElement(elementKey) {
+        if (!atomContainer) return;
 
-        // Fade out
-        elementLegend.style.opacity = '0';
-        elementLegend.style.transform = 'translateX(-10px)';
+        // Update atom colors
+        atomContainer.setAttribute('data-element', elementKey);
 
-        setTimeout(() => {
-            // Update to next element
-            currentElementIndex = (currentElementIndex + 1) % elements.length;
-            const element = elements[currentElementIndex];
-
-            atomContainer.setAttribute('data-element', element.key);
-            elementSymbol.textContent = element.symbol;
-            elementName.textContent = element.name;
-            elementNumber.textContent = element.number;
-
-            // Fade in
-            elementLegend.style.opacity = '1';
-            elementLegend.style.transform = 'translateX(0)';
-        }, 300);
+        // Update active tag
+        elementTags.forEach(tag => {
+            if (tag.getAttribute('data-element') === elementKey) {
+                tag.classList.add('active');
+            } else {
+                tag.classList.remove('active');
+            }
+        });
     }
 
-    // Cycle every 5 seconds
+    function cycleElement() {
+        currentElementIndex = (currentElementIndex + 1) % elementKeys.length;
+        setActiveElement(elementKeys[currentElementIndex]);
+    }
+
+    // Click on element tag to change atom
+    elementTags.forEach(tag => {
+        tag.addEventListener('click', () => {
+            const elementKey = tag.getAttribute('data-element');
+            currentElementIndex = elementKeys.indexOf(elementKey);
+            setActiveElement(elementKey);
+        });
+    });
+
+    // Cycle every 3 seconds
     if (atomContainer) {
-        setInterval(cycleElement, 5000);
+        setActiveElement('iron'); // Set initial
+        setInterval(cycleElement, 3000);
     }
 });

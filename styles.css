@@ -698,55 +698,97 @@ body {
     to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* Element Legend */
-.element-legend {
+/* Orbiting Element Tags */
+.element-orbit {
     position: absolute;
-    top: 20px;
-    left: 20px;
-    background: rgba(10, 10, 18, 0.9);
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 500px;
+    transform: translate(-50%, -50%);
+    animation: element-orbit-spin 30s linear infinite;
+    pointer-events: none;
+    z-index: 15;
+}
+
+@keyframes element-orbit-spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.element-tag {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 70px;
+    margin: -35px 0 0 -30px;
+    background: rgba(10, 10, 18, 0.95);
     border: 1px solid var(--color-border-bright);
-    border-radius: 12px;
-    padding: 16px 20px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    z-index: 10;
-    backdrop-filter: blur(10px);
-    transition: all 0.5s ease;
-}
-
-.element-symbol {
-    font-family: var(--font-mono);
-    font-size: 36px;
-    font-weight: 700;
-    color: var(--color-primary-bright);
-    min-width: 60px;
-    text-align: center;
-    transition: color 0.5s ease;
-}
-
-.element-info {
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 2px;
+    backdrop-filter: blur(10px);
+    transform: rotate(calc(var(--i) * 60deg)) translateY(-220px) rotate(calc(var(--i) * -60deg));
+    animation: tag-counter-rotate 30s linear infinite;
+    animation-delay: calc(var(--i) * -5s);
+    transition: all 0.3s ease;
+    pointer-events: auto;
 }
 
-.element-name {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--color-text);
-    transition: color 0.5s ease;
+@keyframes tag-counter-rotate {
+    from { transform: rotate(calc(var(--i) * 60deg)) translateY(-220px) rotate(calc(var(--i) * -60deg + 0deg)); }
+    to { transform: rotate(calc(var(--i) * 60deg)) translateY(-220px) rotate(calc(var(--i) * -60deg + -360deg)); }
 }
 
-.element-number {
+.element-tag:hover {
+    transform: rotate(calc(var(--i) * 60deg)) translateY(-220px) rotate(calc(var(--i) * -60deg)) scale(1.15);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 20px var(--color-primary-glow);
+    z-index: 20;
+}
+
+.tag-symbol {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 24px;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.tag-number {
+    font-family: var(--font-mono);
+    font-size: 10px;
     color: var(--color-text-muted);
 }
 
-.element-number::before {
-    content: 'Atomic # ';
-    color: var(--color-text-subtle);
+/* Element Tag Colors */
+.element-tag[data-element="iron"] .tag-symbol { color: #f97316; }
+.element-tag[data-element="iron"] { border-color: rgba(249, 115, 22, 0.3); }
+
+.element-tag[data-element="copper"] .tag-symbol { color: #fbbf24; }
+.element-tag[data-element="copper"] { border-color: rgba(251, 191, 36, 0.3); }
+
+.element-tag[data-element="gold"] .tag-symbol { color: #fcd34d; }
+.element-tag[data-element="gold"] { border-color: rgba(252, 211, 77, 0.3); }
+
+.element-tag[data-element="titanium"] .tag-symbol { color: #a78bfa; }
+.element-tag[data-element="titanium"] { border-color: rgba(167, 139, 250, 0.3); }
+
+.element-tag[data-element="platinum"] .tag-symbol { color: #e2e8f0; }
+.element-tag[data-element="platinum"] { border-color: rgba(226, 232, 240, 0.3); }
+
+.element-tag[data-element="cobalt"] .tag-symbol { color: #60a5fa; }
+.element-tag[data-element="cobalt"] { border-color: rgba(96, 165, 250, 0.3); }
+
+/* Active element highlight */
+.element-tag.active {
+    background: rgba(59, 130, 246, 0.15);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 25px var(--color-primary-glow);
+    transform: rotate(calc(var(--i) * 60deg)) translateY(-220px) rotate(calc(var(--i) * -60deg)) scale(1.1);
 }
 
 /* Element Color Themes */
