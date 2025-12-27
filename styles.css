@@ -3272,22 +3272,22 @@ body {
     background: linear-gradient(90deg, transparent, var(--color-accent), var(--color-primary), var(--color-accent), transparent);
 }
 
-/* Vortex Hero Layout */
+/* Vortex Hero Layout - Animation on TOP */
 .vortex-hero {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
     align-items: center;
-    margin-bottom: 80px;
+    margin-bottom: 60px;
 }
 
-/* Kármán Vortex Animation Container */
+/* Kármán Vortex Animation Container - FULL WIDTH AT TOP */
 .vortex-animation-wrapper {
     position: relative;
     width: 100%;
-    aspect-ratio: 16/10;
-    max-width: 700px;
-    min-height: 380px;
+    aspect-ratio: 21/9;
+    max-width: 900px;
+    min-height: 350px;
     margin: 0 auto;
 }
 
@@ -3426,8 +3426,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     animation: core-pulse 1.5s ease-in-out infinite;
 }
@@ -3436,23 +3436,116 @@ body {
 .vortex-upper .vortex-core {
     background: radial-gradient(circle, #22d3ee 0%, #06b6d4 50%, #0891b2 100%);
     box-shadow:
-        0 0 20px rgba(34, 211, 238, 0.9),
-        0 0 40px rgba(6, 182, 212, 0.7),
-        0 0 60px rgba(6, 182, 212, 0.5);
+        0 0 25px rgba(34, 211, 238, 1),
+        0 0 50px rgba(6, 182, 212, 0.8),
+        0 0 80px rgba(6, 182, 212, 0.5);
 }
 
 /* Lower vortices - BLUE with bright glow */
 .vortex-lower .vortex-core {
     background: radial-gradient(circle, #60a5fa 0%, #3b82f6 50%, #2563eb 100%);
     box-shadow:
-        0 0 20px rgba(96, 165, 250, 0.9),
-        0 0 40px rgba(59, 130, 246, 0.7),
-        0 0 60px rgba(59, 130, 246, 0.5);
+        0 0 25px rgba(96, 165, 250, 1),
+        0 0 50px rgba(59, 130, 246, 0.8),
+        0 0 80px rgba(59, 130, 246, 0.5);
 }
 
 @keyframes core-pulse {
     0%, 100% { transform: translate(-50%, -50%) scale(1); }
-    50% { transform: translate(-50%, -50%) scale(1.2); }
+    50% { transform: translate(-50%, -50%) scale(1.3); }
+}
+
+/* SPIRAL ARMS - Creates visible vortex/cyclone shape */
+.vortex::before,
+.vortex::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Spiral arm 1 - conic gradient creates spiral effect */
+.vortex::before {
+    background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        rgba(6, 182, 212, 0.6) 30deg,
+        transparent 60deg,
+        rgba(6, 182, 212, 0.4) 120deg,
+        transparent 150deg,
+        rgba(6, 182, 212, 0.5) 210deg,
+        transparent 240deg,
+        rgba(6, 182, 212, 0.3) 300deg,
+        transparent 330deg
+    );
+    animation: spiral-spin 3s linear infinite;
+}
+
+/* Spiral arm 2 - offset rotation */
+.vortex::after {
+    width: 60px;
+    height: 60px;
+    background: conic-gradient(
+        from 45deg,
+        transparent 0deg,
+        rgba(6, 182, 212, 0.8) 20deg,
+        transparent 50deg,
+        rgba(6, 182, 212, 0.6) 110deg,
+        transparent 140deg,
+        rgba(6, 182, 212, 0.7) 200deg,
+        transparent 230deg,
+        rgba(6, 182, 212, 0.5) 290deg,
+        transparent 320deg
+    );
+    animation: spiral-spin 2s linear infinite;
+}
+
+/* Upper vortices spin clockwise */
+.vortex-upper::before,
+.vortex-upper::after {
+    animation-direction: normal;
+}
+
+/* Lower vortices spin counter-clockwise with BLUE color */
+.vortex-lower::before {
+    background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        rgba(59, 130, 246, 0.6) 30deg,
+        transparent 60deg,
+        rgba(59, 130, 246, 0.4) 120deg,
+        transparent 150deg,
+        rgba(59, 130, 246, 0.5) 210deg,
+        transparent 240deg,
+        rgba(59, 130, 246, 0.3) 300deg,
+        transparent 330deg
+    );
+    animation-direction: reverse;
+}
+
+.vortex-lower::after {
+    background: conic-gradient(
+        from 45deg,
+        transparent 0deg,
+        rgba(59, 130, 246, 0.8) 20deg,
+        transparent 50deg,
+        rgba(59, 130, 246, 0.6) 110deg,
+        transparent 140deg,
+        rgba(59, 130, 246, 0.7) 200deg,
+        transparent 230deg,
+        rgba(59, 130, 246, 0.5) 290deg,
+        transparent 320deg
+    );
+    animation-direction: reverse;
+}
+
+@keyframes spiral-spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 /* Vortex Rings - VISIBLE SPIRAL ARMS */
@@ -3640,20 +3733,21 @@ body {
     letter-spacing: 0.05em;
 }
 
-/* Vortex Intro Text */
+/* Vortex Intro Text - CENTERED */
 .vortex-intro {
-    max-width: 500px;
+    max-width: 700px;
+    text-align: center;
 }
 
 .vortex-lead {
     font-size: 18px;
     color: var(--color-text-secondary);
     line-height: 1.7;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 .vortex-statement {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
     color: var(--color-accent-bright);
     line-height: 1.5;
