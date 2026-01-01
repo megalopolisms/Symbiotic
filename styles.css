@@ -157,6 +157,57 @@ body {
     background: rgba(255, 255, 255, 0.05);
 }
 
+/* Colored Tab Theme */
+.nav-links a[href="#vision"] {
+    border-bottom: 2px solid transparent;
+}
+.nav-links a[href="#vision"]:hover,
+.nav-links a[href="#vision"].active {
+    color: #3b82f6;
+    border-bottom-color: #3b82f6;
+    background: rgba(59, 130, 246, 0.1);
+}
+
+.nav-links a[href="#approach"] {
+    border-bottom: 2px solid transparent;
+}
+.nav-links a[href="#approach"]:hover,
+.nav-links a[href="#approach"].active {
+    color: #06b6d4;
+    border-bottom-color: #06b6d4;
+    background: rgba(6, 182, 212, 0.1);
+}
+
+.nav-links a[href="#domains"] {
+    border-bottom: 2px solid transparent;
+}
+.nav-links a[href="#domains"]:hover,
+.nav-links a[href="#domains"].active {
+    color: #a855f7;
+    border-bottom-color: #a855f7;
+    background: rgba(168, 85, 247, 0.1);
+}
+
+.nav-links a[href="#vortex"] {
+    border-bottom: 2px solid transparent;
+}
+.nav-links a[href="#vortex"]:hover,
+.nav-links a[href="#vortex"].active {
+    color: #10b981;
+    border-bottom-color: #10b981;
+    background: rgba(16, 185, 129, 0.1);
+}
+
+.nav-links a[href="#research"] {
+    border-bottom: 2px solid transparent;
+}
+.nav-links a[href="#research"]:hover,
+.nav-links a[href="#research"].active {
+    color: #f59e0b;
+    border-bottom-color: #f59e0b;
+    background: rgba(245, 158, 11, 0.1);
+}
+
 .nav-cta {
     background: var(--gradient-primary) !important;
     color: white !important;

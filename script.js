@@ -45,6 +45,26 @@ document.addEventListener('DOMContentLoaded', () => {
         lastScroll = currentScroll;
     });
 
+    // Active tab tracking based on scroll position
+    const sections = document.querySelectorAll('section[id], header[id], .section[id]');
+    const navLinksAll = document.querySelectorAll('.nav-links a[href^="#"]');
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navLinksAll.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    }, { rootMargin: '-30% 0px -70% 0px' });
+
+    sections.forEach(section => sectionObserver.observe(section));
+
     // Intersection Observer for fade-in animations
     const observerOptions = {
         root: null,
